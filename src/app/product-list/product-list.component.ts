@@ -3,7 +3,6 @@ import { Component, EventEmitter, OnInit, Input, Output, ViewChild } from '@angu
 import { Product } from '../models/product.model';
 import { ProductService } from '../services/product.service';
 import { CartService } from '../services/cart.service';
-import { CartComponent } from '../cart/cart.component';
 
 @Component({
   selector: 'app-product-list',
@@ -11,12 +10,11 @@ import { CartComponent } from '../cart/cart.component';
   //styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit {
-  cart: CartComponent;
-
   products: Array<Product>;
 
   constructor(
-    public productService: ProductService
+    public productService: ProductService,
+    public cartService: CartService
   ) { }
 
   ngOnInit() {
@@ -25,5 +23,6 @@ export class ProductListComponent implements OnInit {
 
   onAddToCart(product: Product): void {
     console.log('Adding to cart: ', product);
+    this.cartService.addToCart(product, 1);
   }
 }

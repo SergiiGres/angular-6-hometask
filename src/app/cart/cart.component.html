@@ -1,18 +1,22 @@
-<div *ngIf="products.length == 0;then cartempty else cart">
+<div *ngIf="cartProducts.length == 0;then cartempty else cart"> 
 </div>
 <ng-template #cartempty>
     <div class="panel panel-default">
         <div class="panel-heading">Your Cart is empty</div>
+        <div class="panel-body">Products will be displayed here.</div>
     </div>
 </ng-template>
 <ng-template #cart>
     <div class="panel panel-default">
-        <div class="panel-heading">You have {{products.length}} items in your cart</div>
-        <div class="panel-body" *ngFor="let product of products">
+        <div class="panel-heading">You have {{cartProducts.length}} items in your cart</div>
+        <div class="panel-body" *ngFor="let cartItem of cartProducts">
             <ul>
-                <li>Description: {{product.description}}</li>
-                <li>Price: {{product.price}}</li>
+                <li>Description: {{cartItem.product.description}}</li>
+                <li>Price: {{cartItem.product.price}}</li>
+                <li>Quantity: {{cartItem.quantity}}</li>
+                <li>Total: {{cartItem.quantity * cartItem.product.price}}</li>
             </ul>
+            <button type="button" class="btn btn-primary" (click)='onRemoveFromCart(cartItem)'>Remove</button>
         </div>
       </div>
 </ng-template>
