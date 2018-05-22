@@ -1,0 +1,17 @@
+<div *ngIf="products.length == 0;then cartempty else cart">
+</div>
+<ng-template #cartempty>
+    <div class="panel panel-default">
+        <div class="panel-heading">Your Cart is empty</div>
+    </div>
+</ng-template>
+<ng-template #cart>
+    <div class="panel panel-default">
+        <div class="panel-heading">You have {{products.length}} items in your cart</div>
+        <div class="panel-body">
+            <ul>
+                <li *ngFor="let product of products">{{product.name}}  {{product.price}}</li>
+            </ul>
+        </div>
+      </div>
+</ng-template>
