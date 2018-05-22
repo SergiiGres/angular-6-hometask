@@ -8,9 +8,10 @@
 <ng-template #cart>
     <div class="panel panel-default">
         <div class="panel-heading">You have {{products.length}} items in your cart</div>
-        <div class="panel-body">
+        <div class="panel-body" *ngFor="let product of products">
             <ul>
-                <li *ngFor="let product of products">{{product.name}}  {{product.price}}</li>
+                <li>Description: {{product.description}}</li>
+                <li>Price: {{product.price}}</li>
             </ul>
         </div>
       </div>
